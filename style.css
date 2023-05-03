@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+width: 100vw;
+
+
+}
+
+.moviesView {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.add-movies-view {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    margin-top: 50px;
+}
+
+.edit-movies-view {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    display: none;
+    margin-top: 50px;
+}
+
+#addViewBtn {
+    cursor: pointer;
+}
