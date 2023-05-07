@@ -35,7 +35,51 @@ editButton.addEventListener('click', editMovie);
 searchInput.addEventListener('keyup', searchMovie);
 
 
+//Functions
+function searchMovie() {
+    let searchTerm = this.value;
+    let filtered = db.filter(movie => movie.title.includes(searchTerm));
+    displayList(filtered);
+}
+function addMovie() {
+    let newMovie = {
+        image: imageInput.value,
+        title: titleInput.value,
+        year: yearInput.value,
+        category: categoryInput.value,
+        rate: rateInput.value
+    }
+    db.push(newMovie)
+    displayList();
+    moviesView.style.display = "flex";
 
+}
+function editMovie() {
+ let indexOfMovie = this.getAttribute('data-index');
+ let editedMovie = {
+     image: db[indexOfMovie].image,
+     title: eTitleInput.value,
+     year: eYearInput.value,
+     category: eCategoryInput.value,
+     rate: eRateInput.value
+    }
+
+    db[indexOfMovie] = editedMovie;
+    editMoviesView.style.display='none';
+    moviesView.style.display = 'flex';
+    displayList();
+
+}
+
+function deleteMovie() {
+    let indexOfMoive = this.getAttribute('data-index');
+    db.splice(indexOfMoive, 1);
+    displayList();
+}
+
+
+
+displayList();
 function displayEditForm() {
     let indexOfMovie = this.getAttribute('data-index');
     let selectedMovie = db[indexOfMovie]
@@ -72,7 +116,14 @@ function displayList(filtered) {
 
     moviesView.innerHTML = html;
 
-    
+    const editBtn = document.querySelectorAll('.editBtn');
+    const deleteBtn = document.querySelectorAll('.deleteBtn');
+
+    editBtn.forEach((btn,index) => {
+        btn.addEventListener('click', displayEditForm);
+        deleteBtn[index].addEventListener('click', deleteMovie);
+    })
+    addMoviesView.style.display = "none";
 }
 
 
